@@ -1,0 +1,62 @@
+* {
+    font-family: 'Roboto Mono', monospace;
+    padding: 0%;
+    margin: 0%;
+}
+
+body {
+    background-color: #6A48F1;
+}
+
+.title {
+    text-align: center;
+    font-size: 80px;
+}
+
+.custom-shape-divider-top-1646316982 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1646316982 svg {
+    position: relative;
+    display: block;
+    width: calc(240% + 1.3px);
+    height: 427px;
+}
+
+.custom-shape-divider-top-1646316982 .shape-fill {
+    fill: #6A48F1;
+}
+
+.app {
+    text-align: center;
+}
+
+.input-short {
+    width: 500px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.input-short, .input-short::after {
+    border: none;
+    border-bottom: 1px solid #6A48F1;
+    outline: none;
+}
+
+.btn-short {
+    height: 40px;
+    width: 110px;
+    font-size: 18px;
+    background-color: white;
+    border: none;
+}
+
+.btn-short:hover {
+    border: 2px solid black;
+}

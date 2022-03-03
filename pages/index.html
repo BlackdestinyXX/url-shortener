@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+    <title>Link Shortener</title>
+</head>
+
+<body>
+    <div class="app">
+        <div class="custom-shape-divider-top-1646316919">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <h1 class="title">Link shortener</h1> <br><br>
+        <p class="shorted-url"></p><br>
+        <input type="text" class="input-short" placeholder="Write here the url to short" /> <br><br>
+        <input type="text" class="input-custom" placeholder="Write here your custom url" /> <br><br>
+        <button class="btn-short">Shorten</button><br><br>
+        <p>Created by Bl4ckdestinyXX</p>
+    </div>
+    <script>
+        const input = document.querySelector('.input-short');
+        const btn = document.querySelector('.btn-short');
+        const shortedUrl = document.querySelector('.shorted-url');
+        const customUrl = document.querySelector('.input-custom');
+
+        btn.addEventListener('click', () => {
+            const url = input.value;
+            fetch(`/api/shorten?url=${url}&custom_url=${customUrl.value}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success == false) {
+                    if(data.code == "url_exists") {
+                        alert("This custom url already exists, please change it");
+                    } else {
+                        alert("A generic error has occurred");
+                    }
+                } else {
+                    shortedUrl.innerHTML = data.shortUrl;
+                }
+            })
+            .catch(err => console.log(err));
+        });
+    </script>
+</body>
+
+</html>
